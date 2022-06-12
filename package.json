@@ -13,5 +13,8 @@
     "**/*": "prettier --write --ignore-unknown",
     "src/*": "eslint --ext .js,.ts,.tsx",
     "**/*.{less,css}": "stylelint --fix"
+  },
+  "scripts": {
+    "pre-commit": "npm run test && eslint"
   }
 }
