@@ -1,20 +1,42 @@
 {
+  "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.17.0",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.1",
-    "prettier": "2.6.2",
-    "stylelint": "^14.9.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.11.0",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^26.0.0"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown",
-    "src/*": "eslint --ext .js,.ts,.tsx",
-    "**/*.{less,css}": "stylelint --fix"
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "typescript": "^4.8.2"
   },
   "scripts": {
-    "pre-commit": "npm run test && eslint"
+    "pre-commit": "npm run test && eslint",
+    "lint": "eslint --ext .tsx --ext .ts src/",
+    "format": "prettier --check ./src"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --ext .tsx --ext .ts src/ --fix"
+    ],
+    "./src/**": [
+      "prettier --write ."
+    ],
+    "src/**/*.{scss,css}": [
+      "stylelint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
